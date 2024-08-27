@@ -42,7 +42,7 @@ public class HashMapExample {
         for (String word: words) {
             int l = word.length();
             if (!lengthToWords.containsKey(l)) {
-                lengthToWords.put(l, new HashSet<>());
+              lengthToWords.put(l, new HashSet<>());
             }
             lengthToWords.get(l).add(word);
         }

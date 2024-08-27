@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class ArrayListExample {
     public static void main(String[] args) {
-
-        /*ArrayList<String> countries = new ArrayList<>();
+        /*
+        ArrayList<String> countries = new ArrayList<>();
         countries.add("USA");
         countries.add("China");
         countries.add("Italy");
@@ -24,14 +24,13 @@ public class ArrayListExample {
         Collections.sort(countries);
         System.out.println(countries);
 
-         */
+        countries.forEach(System.out::println); // Will discuss late
+        */
 
         ArrayList<BankAccount> accounts = new ArrayList<>();
         accounts.add(new BankAccount(300, "Jones"));
         accounts.add(new BankAccount(20, "Smith"));
-        //Collections.sort(accounts);
         System.out.println(accounts);
 
-        // countries.forEach(System.out::println); // Will discuss late
     }
 }

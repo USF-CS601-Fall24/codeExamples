@@ -1,6 +1,7 @@
 package dataStructures;
 
-/** Specify command line arguments in the menu first - Run/Edit Configurations/Program Argument */
+/** Specify command line arguments in the IntelliJ menu first:
+ *  Run/Edit Configurations/Program Arguments */
 public class CommandLineArgumentsExample {
     public static void main(String[] args) {
         if (args.length < 2) {
