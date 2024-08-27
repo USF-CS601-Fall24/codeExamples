@@ -8,11 +8,12 @@ import java.io.IOException;
 /** The example demonstrates reading from a JSON file */
 public class JsonProcessor {
     public static void main(String[] args) {
-        // parseFruitFile("input/fruit.json");
-        //parsePersonInfo("input/personInfo.json");
-        parseJson("input/personInfo.json", Person.class);
-        //writePersonInfoToJson();
-        //parsePeopleArray("input/people.json");
+        JsonProcessor jp = new JsonProcessor();
+        jp.parseFruitFile("input/fruit.json");
+        //jp.parsePersonInfo("input/personInfo.json");
+        //jp.parseJson("input/personInfo.json", Person.class);
+        //jp.writePersonInfoToJson();
+        //jp.parsePeopleArray("input/people.json");
     }
 
     /**
@@ -22,7 +23,7 @@ public class JsonProcessor {
      *
      * @param filePath path to the json file
      */
-    public static void parseFruitFile(String filePath) {
+    public void parseFruitFile(String filePath) {
         Gson gson = new Gson();
         System.out.println("Created the following object from fruit.json :");
         System.out.println();
@@ -44,7 +45,7 @@ public class JsonProcessor {
      *
      * @param filePath path to the json file
      */
-    public static void parsePersonInfo(String filePath) {
+    public void parsePersonInfo(String filePath) {
         Gson gson = new Gson();
         try (FileReader fr = new FileReader(filePath)) {
             // Parse the json file into a Person object
@@ -63,11 +64,11 @@ public class JsonProcessor {
      * @param filename filename
      * @param objectType class of an object to read from file
      */
-    public static void parseJson(String filename, Class objectType) {
+    public void parseJson(String filename, Class objectType) {
         Gson gson = new Gson();
         try (FileReader fr = new FileReader(filename)) {
             Object p = gson.fromJson(fr, objectType);
-            System.out.println("Created the following object from personInfo.json file:");
+            System.out.println("Created the following object from json file:");
             System.out.println();
             System.out.println(p);
         } catch (IOException e) {
@@ -79,7 +80,7 @@ public class JsonProcessor {
      * Demonstrates how to convert an object to a  json string
      * @return json string representing the object
      */
-    public static String writePersonInfoToJson() {
+    public String writePersonInfoToJson() {
         Address address = new Address("CA", "San Francisco", "Geary", 45);
         Person person = new Person("Joe Lee", 1, "Tester", address);
         // Save an object p of class Person to a json file:
@@ -101,7 +102,7 @@ public class JsonProcessor {
      *
      * @param filePath path to the json file
      */
-    public static void parsePeopleArray(String filePath) {
+    public void parsePeopleArray(String filePath) {
         Gson gson = new Gson();
 
         try (FileReader fr = new FileReader(filePath)) {
