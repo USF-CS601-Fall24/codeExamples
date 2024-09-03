@@ -16,6 +16,7 @@ public class USFCourseMain {
             System.out.println(it.next());
         }
 
+        System.out.println();
         // If USFCourse implements Iterable, we can also use a foreach loop:
         // Uses an iterator behind the curtains
         for (Student st: course) {

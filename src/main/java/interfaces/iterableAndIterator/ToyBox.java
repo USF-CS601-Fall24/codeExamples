@@ -1,5 +1,6 @@
 package interfaces.iterableAndIterator;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class ToyBox implements Iterable<String> {
@@ -21,7 +22,7 @@ public class ToyBox implements Iterable<String> {
     }
 
     public Iterator<String> iterator() {
-        ToyIterator it = new ToyIterator();
+        Iterator<String> it = new ToyIterator();
         return it;
     }
 

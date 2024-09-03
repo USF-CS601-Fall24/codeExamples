@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Iterator;
 
 /* Represents a course at a univesity */
-public class USFCourse implements Iterable<Student> {
+public class USFCourse  implements Iterable<Student> {
     private List<Student> students; // stores students in an ArrayList
     private String courseID;
 
@@ -19,9 +19,11 @@ public class USFCourse implements Iterable<Student> {
         students.add(st);
     }
 
+
     @Override
     public Iterator<Student> iterator() {
         return students.iterator();
     }
+
 
 }
