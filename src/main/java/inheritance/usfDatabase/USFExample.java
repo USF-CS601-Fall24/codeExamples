@@ -14,7 +14,9 @@ public class USFExample {
         usfPeople.add(new USFStudent("Michael Chen", "1046", 3.9));
         usfPeople.add(new USFStaff("Lisa Manekoffski", "2407", 321, 7));
         for (USFPerson person: usfPeople) {
-            person.print();
+            person.print(); // polymorphic behavior - different implementations of print will be invoked
+            // depending on which object the "person" variable is referencing
+
             System.out.println("--------------");
         }
     }
