@@ -1,0 +1,1 @@
+void accept performs operation on the given argument.
