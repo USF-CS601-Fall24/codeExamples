@@ -24,8 +24,6 @@ public class CyclicBarrierExample {
                 } catch (InterruptedException | BrokenBarrierException e) {
                     System.out.println(e);
                 }
-                //System.out.println("Thread " + threadId + " has crossed the barrier.");
-
             });
 
         }
