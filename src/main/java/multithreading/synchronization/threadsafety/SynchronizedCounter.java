@@ -5,16 +5,7 @@ public class SynchronizedCounter {
 
     public synchronized void increment() {
         c++;
-        System.out.println(c);
     }
-
-    public void incrementWithSynchronizedBlock() {
-        synchronized (this) {
-            c++;
-            System.out.println(c);
-        }
-    }
-
 
     public synchronized void decrement() {
         c--;

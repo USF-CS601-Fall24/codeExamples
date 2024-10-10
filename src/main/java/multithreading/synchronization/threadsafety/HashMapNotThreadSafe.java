@@ -2,6 +2,7 @@ package multithreading.synchronization.threadsafety;
 
 import java.util.HashMap;
 
+// Not thread-safe, concurrent writes may leave the map in an inconsistent state
 public class HashMapNotThreadSafe {
     public static void main(String[] args) {
         HashMap map = new HashMap();
