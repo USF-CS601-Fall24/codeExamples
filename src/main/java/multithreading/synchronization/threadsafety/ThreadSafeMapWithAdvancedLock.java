@@ -2,6 +2,7 @@ package multithreading.synchronization.threadsafety;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ThreadSafeMapWithAdvancedLock {
