@@ -1,8 +1,8 @@
 package sockets;
 
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.BitSet;
 import java.util.Scanner;
 
 /**
@@ -24,25 +24,33 @@ public class SimpleClient extends Thread {
 			Scanner sc  = new Scanner(System.in);
 
 			// For writing to the socket (so that the server could get client messages)
-			PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+			try(PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+				String input = null;
+				while (!socket.isClosed()) {
+					input = sc.nextLine(); // read keyboard input
+					writer.println(input); // send the message to the server via the socket
 
-			String input = null;
-			while (!socket.isClosed()) {
-				input = sc.nextLine(); // read keyboard input
-				writer.println(input); // send the message to the server via the socket
+					String messageFromServer = br.readLine();
+					System.out.println("I (client) received the following from the server: " + messageFromServer);
 
-				if (input.equals(SimpleServer.EOT)) {
-					System.out.println("Client: Ending client.");
-					 socket.close();
-				} else if (input.equals(SimpleServer.SHUTDOWN)) {
-					System.out.println("Client: Shutting down server.");
-					socket.close();
+					if (input.equals(SimpleServer.EOT)) {
+						System.out.println("Client: Ending client.");
+						socket.close();
+					} else if (input.equals(SimpleServer.SHUTDOWN)) {
+						System.out.println("Client: Shutting down server.");
+						socket.close();
+					}
 				}
 			}
-			writer.close();
+			catch (IOException e) {
+				System.out.println(e);
+			}
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+
 	}
 
 	public static void main(String[] args) {

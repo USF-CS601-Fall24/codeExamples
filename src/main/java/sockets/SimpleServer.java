@@ -3,6 +3,7 @@ package sockets;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -44,12 +45,18 @@ public class SimpleServer extends Thread {
 				// Generally, we should create a new runnable task for each client request, but it
 				// is not done in this example
 
-				try(BufferedReader reader = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()))) {
+				try(BufferedReader reader = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+				   PrintWriter pw = new PrintWriter(connectionSocket.getOutputStream()))
+				{
 					// The server can now read lines sent by the client using BufferedReader
 					String input;
 					while (!connectionSocket.isClosed()) {
 						input = reader.readLine();
+						if (input == null)
+							break;
 						System.out.println("Server received: " + input); // echo the same string to the console
+						pw.println(input);
+						pw.flush();
 
 						if (input.equals(EOT)) { // close the connection socket for this client
 							System.out.println("Server: Closing socket.");
