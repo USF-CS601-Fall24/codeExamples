@@ -26,36 +26,35 @@ public class InputValidationTest {
 	      Scanner scanner = new Scanner( System.in );
 	      System.out.println( "Please enter first name:" );
 	      String firstName = scanner.nextLine();
+		  if ( !InputValidationExample.validateFirstName( firstName ) )
+			  System.out.println( "Invalid first name" );
+
 	      System.out.println( "Please enter last name:" );
 	      String lastName = scanner.nextLine();
+		  if ( !InputValidationExample.validateLastName( lastName ) )
+			  System.out.println( "Invalid last name" );
+
 	      System.out.println( "Please enter address:" );
 	      String address = scanner.nextLine();
+		  if ( !InputValidationExample.validateAddress( address ) )
+			  System.out.println( "Invalid address" );
+
 	      System.out.println( "Please enter city:" );
 	      String city = scanner.nextLine();
-	      System.out.println( "Please enter state:" );
-	      String state = scanner.nextLine();
+		  if ( !InputValidationExample.validateCity( city ) )
+			  System.out.println( "Invalid city" );
+
 	      System.out.println( "Please enter zip:" );
 	      String zip = scanner.nextLine();
+		  if ( !InputValidationExample.validateZip( zip ) )
+			  System.out.println( "Invalid zip code" );
+
 	      System.out.println( "Please enter phone:" );
 	      String phone = scanner.nextLine();
+		  if ( !InputValidationExample.validatePhone( phone ) )
+			  System.out.println( "Invalid phone number" );
 
-	      // validate user input and display error message
-	      System.out.println( "\nValidate Result:" );
-
-	      if ( !InputValidationExample.validateFirstName( firstName ) )
-	         System.out.println( "Invalid first name" );
-	      else if ( !InputValidationExample.validateLastName( lastName ) )
-	         System.out.println( "Invalid last name" );
-	      else if ( !InputValidationExample.validateAddress( address ) )
-	         System.out.println( "Invalid address" );
-	      else if ( !InputValidationExample.validateCity( city ) )
-	         System.out.println( "Invalid city" );
-	      else if ( !InputValidationExample.validateZip( zip ) )
-	         System.out.println( "Invalid zip code" );
-	      else if ( !InputValidationExample.validatePhone( phone ) )
-	         System.out.println( "Invalid phone number" );
-	      else
-	         System.out.println( "Valid input.  Thank you." );
+	     System.out.println( "Valid input.  Thank you." );
 	   } // end main
 	} // end class Validate
 
