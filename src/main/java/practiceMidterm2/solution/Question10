@@ -1,0 +1,55 @@
+Will the following program hang due to nested blocks of code that require the same lock? Explain your answer.
+
+public class MapWithLock {
+    private final Map<String, String> map = new HashMap<>();
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
+    public void putAll(String[] keys, String[] values) {
+        for (int i = 0; i < keys.length; i++) {
+            lock.writeLock().lock();
+            try {
+                put(keys[i], values[i]);
+            } finally {
+                lock.writeLock().unlock();
+            }
+        }
+    }
+
+    public void put(String key, String value) {
+        lock.writeLock().lock();
+        try {
+            map.put(key, value);
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
+    public static void main(String[] args) {
+        MapWithLock mapWithLock = new MapWithLock();
+        String[] keys1 = {"red", "blue", "green"};
+        String[] values1 = {"rojo", "azul", "verde"};
+        String[] keys2 = {"one", "two", "three"};
+        String[] values2 = {"1", "2", "3"};
+        Thread thread1 = new Thread(() -> mapWithLock.putAll(keys1, values1));
+        Thread thread2 = new Thread(() -> mapWithLock.putAll(keys2, values2));
+        thread1.start();
+        thread2.start();
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+
+    Solution:
+    No, it will not hang because the lock we are using is reentrant.
+    If the lock is reentrant, a thread that already holds a lock can acquire the same lock again.
+    For ReentrantReadWriteLock,
+    if a thread is holding a read lock, it can acquire another read lock;
+    if a thread is holding a write lock, it can acquire another write lock or acquire a read lock.
+
+    Suppose a thread acquires a write lock in putAll; then same thread can re-acquire another write lock in the nested put method.
+    ReentrantReadWriteLock requires that you unlock the same number of times you lock.
+
+    But keep in mind the sort of locking we do in putAll is inefficient.

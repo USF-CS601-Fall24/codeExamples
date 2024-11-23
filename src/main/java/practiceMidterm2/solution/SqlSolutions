@@ -1,0 +1,18 @@
+Solution:
+
+Question 2:
+select *
+from phones
+where descr='Cell';
+
+Question 3:
+select name, area, number
+from pusers inner join phones
+on pusers.id=phones.userid;
+
+Question 4:
+select name
+from pusers inner join phones
+on pusers.id=phones.userid
+group by userid
+having count(*) = 1

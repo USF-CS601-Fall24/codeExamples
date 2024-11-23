@@ -1,0 +1,16 @@
+Write an HTTP POST request to the server (www.university.edu) to fetch
+courses.html. Use 1.1 version of HTTP protocol. Pass two parameters:
+• semester with the value of Fall
+• year with the value of 2024
+
+Solution: (note that Content-Type and Content-Length are required parts of the
+header, but it is ok if  you did not write them in the solution (and I put 30 as content length randomly),
+this question focused on the fact that parameters are passed in the body of the POST request
+(here we have a header, then an empty line, then the body).
+
+POST /courses.html HTTP/1.1
+Host: www.university.edu
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 30
+
+semester=Fall&year=2024

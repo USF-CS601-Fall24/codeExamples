@@ -1,0 +1,36 @@
+Consider the BlockingQueue example we discussed in class:
+
+public class BlockingQueue {
+    private List<Integer> queue = new LinkedList<>();
+    private int capacity;
+
+    public BlockingQueue(int capacity) {
+       this.capacity = capacity;
+    }
+
+    public synchronized void enqueue(Integer element) throws InterruptedException {
+       while (queue.size() == capacity) {
+          this.wait();
+       }
+       queue.add(element);
+       this.notifyAll();
+    }
+
+    public synchronized Integer dequeue() throws InterruptedException {
+       while (queue.isEmpty()) {
+          this.wait();
+       }
+       int elem = queue.remove(0);
+       this.notifyAll();
+       return elem;
+    }
+}
+(a) Explain why the methods enqueue and dequeue need to be synchronized?
+Solution:
+Multiple threads may access the queue, trying to modify it.
+We need to synchronize access to it, so that only one thread at a time can modify it, and the queue is in consistent state.
+Also, wait() and notifyAll() need to hold the lock of the object they are called on, otherwise Java would throw an IllegalMonitorStateException.
+
+(b) What is the lock these methods are using?
+Solution:
+this ("this" instance of the Blocking queue - it is called the "intrinsic" lock).
